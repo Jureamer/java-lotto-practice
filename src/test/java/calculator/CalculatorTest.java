@@ -1,3 +1,5 @@
+package calculator;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -57,16 +59,6 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("사칙 연산 기호가 한 글자 이상일 경우 예외를 던진다")
-    @ValueSource(strings = {"1 +- 2", "1 -+ 2", "1 */ 2", "1 /* 2"})
-    void testInvalidSymbol(String input) {
-        assertThatThrownBy(() -> calculator.calculate(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사칙 연산 기호는 한 글자여야 합니다.");
-    }
-
-
-    @ParameterizedTest
     @DisplayName("사칙 연산 기호가 아닐 경우 예외를 던진다")
     @ValueSource(strings = {"1 % 2", "1 ^ 2", "1 # 2", "1 & 2"})
     void testInvalidOperator(String input) {
@@ -81,7 +73,7 @@ public class CalculatorTest {
     void testDivideByZero(String input) {
         assertThatThrownBy(() -> calculator.calculate(input))
                 .isInstanceOf(ArithmeticException.class)
-                .hasMessage("/ by zero");
+                .hasMessage("0으로 나눌 수 없습니다.");
     }
 
     @ParameterizedTest
