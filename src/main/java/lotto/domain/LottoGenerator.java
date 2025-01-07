@@ -15,7 +15,9 @@ public class LottoGenerator {
 
     public static LottoBalls generate() {
         Collections.shuffle(LOTTO_ARRAYS);
-        return new LottoBalls(LOTTO_ARRAYS.subList(0, 6));
+        List<Integer> selectedNumbers = LOTTO_ARRAYS.subList(0, 6);
+        Collections.sort(selectedNumbers);
+        return new LottoBalls(selectedNumbers);
     }
 
 }

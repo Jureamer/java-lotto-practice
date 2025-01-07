@@ -41,4 +41,9 @@ public class LottoBalls {
         }
         return values;
     }
+
+    @Override
+    public String toString() {
+        return lottoBalls.stream().map(LottoBall::getNumber).map(String::valueOf).reduce((a, b) -> a + ", " + b).get();
+    }
 }

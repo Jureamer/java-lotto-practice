@@ -1,7 +1,5 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.LottoBalls;
-import lotto.domain.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +14,4 @@ public class LottoGeneratorTest {
 
         assertThat(lottoBalls.getValues()).hasSize(6);
     }
-
-    @Test
-
 }
