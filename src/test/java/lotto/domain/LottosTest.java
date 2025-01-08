@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,8 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottosTest {
     @Test
-    @DisplayName("로또를 생성한다.")
-    void createLottos() {
+    void 로또를_여러_장_구매한다() {
         PurchasingAmount purchasingAmount = new PurchasingAmount(14000);
         LottoGenerator lottoGenerator = new LottoGenerator();
 
