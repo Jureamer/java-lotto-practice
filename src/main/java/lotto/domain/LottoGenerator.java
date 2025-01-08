@@ -13,11 +13,11 @@ public class LottoGenerator {
         }
     }
 
-    public static LottoBalls generate() {
+    public static Lotto generate() {
         Collections.shuffle(LOTTO_ARRAYS);
         List<Integer> selectedNumbers = LOTTO_ARRAYS.subList(0, 6);
         Collections.sort(selectedNumbers);
-        return new LottoBalls(selectedNumbers);
+        return new Lotto(selectedNumbers);
     }
 
 }

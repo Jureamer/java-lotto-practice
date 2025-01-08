@@ -10,8 +10,7 @@ public class LottoGeneratorTest {
     @DisplayName("로또 번호를 6개 생성한다")
     void generate() {
         LottoGenerator lottoGenerator = new LottoGenerator();
-        LottoBalls lottoBalls = lottoGenerator.generate();
-
+        Lotto lottoBalls = lottoGenerator.generate();
         assertThat(lottoBalls.getValues()).hasSize(6);
     }
 }

@@ -1,12 +1,12 @@
 package lotto.view;
 
 import lotto.Lottos;
-import lotto.domain.LottoBalls;
+import lotto.domain.Lotto;
 
 public class ResultView {
     public void printLottos(Lottos lottos) {
         printPurchasingAmount(lottos.getCount());
-        lottos.getLottos().stream().map(LottoBalls::toString).forEach(System.out::println);
+        lottos.getLottos().stream().map(Lotto::toString).forEach(System.out::println);
 
     }
 

@@ -19,4 +19,17 @@ public class LottoBall {
     public int getNumber() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoBall lottoBall = (LottoBall) o;
+        return value == lottoBall.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(value);
+    }
 }

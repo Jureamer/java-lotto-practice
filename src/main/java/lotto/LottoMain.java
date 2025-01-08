@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.domain.LottoBalls;
 import lotto.domain.LottoGenerator;
 import lotto.domain.PurchasingAmount;
 import lotto.view.InputView;
