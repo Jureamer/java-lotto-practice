@@ -1,17 +1,23 @@
 package lotto.domain;
 
-import java.math.BigDecimal;
-import java.nio.file.Path;
-import java.util.function.DoublePredicate;
-import java.util.function.IntPredicate;
-import java.util.function.LongPredicate;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-
 public class WinningLotto extends Lotto {
-    public WinningLotto(String s) {
+    private LottoBall bonusBall;
+
+    public WinningLotto(String s, String bonusNumber) {
+        this(s, Integer.parseInt(bonusNumber));
+    }
+
+    public WinningLotto(String s, int bonusNumber) {
         super(s);
+        LottoBall bonusBall = new LottoBall(bonusNumber);
+        validatebonusNumber(bonusBall);
+        this.bonusBall = bonusBall;
+    }
+
+    private void validatebonusNumber(LottoBall bonusNumber) {
+        if (lottoBalls.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 
     public int match(Lotto lotto) {

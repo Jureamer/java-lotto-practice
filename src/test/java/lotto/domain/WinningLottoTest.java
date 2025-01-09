@@ -24,20 +24,27 @@ public class WinningLottoTest {
 
     @Test
     void 로또_당첨번호를_생성한다() {
-        assertThat(new WinningLotto("1,2,3,4,5,6")).isNotNull();
+        assertThat(new WinningLotto("1,2,3,4,5,6", 7)).isNotNull();
+    }
+
+    @Test
+    void 보너스_번호가_중복이면_예외를_반환한다() {
+        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", 6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,46", "1,2,3,4,5,0"})
     void 로또_번호_범위를_초과하면_예외를_반환한다(String s) {
-        assertThatThrownBy(() -> new WinningLotto(s))
+        assertThatThrownBy(() -> new WinningLotto(s, 10))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1부터 45 사이여야 합니다.");
     }
 
     @Test
     void 로또_번호_중복이_있으면_예외를_반환한다() {
-        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,5"))
+        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,5", 10))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호에 중복이 있습니다.");
     }
@@ -45,21 +52,21 @@ public class WinningLottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
     void 로또_번호가_6개가_아니면_예외를_반환한다(String s) {
-        assertThatThrownBy(() -> new WinningLotto(s))
+        assertThatThrownBy(() -> new WinningLotto(s, 5))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 6개여야 합니다.");
     }
 
     @Test
     void 로또_당첨번호를_출력한다() {
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
+        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", 10);
         assertThat(winningLotto.toString()).isEqualTo("1, 2, 3, 4, 5, 6");
     }
 
     @ParameterizedTest
     @MethodSource("provideWinningNumbers")
     void 로또_당첨번호_맞은_개수를_반환한다(String winningNumbers, int expected) {
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
+        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", 10);
         Lotto lotto = new Lotto(winningNumbers);
         assertThat(winningLotto.match(lotto)).isEqualTo(expected);
     }

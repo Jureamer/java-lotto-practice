@@ -36,6 +36,14 @@ public class Lotto {
         return values;
     }
 
+    public boolean contains(int value) {
+        return lottoBalls.contains(new LottoBall(value));
+    }
+
+    public boolean contains(LottoBall lottoBall) {
+        return lottoBalls.contains(lottoBall);
+    }
+
     @Override
     public String toString() {
         return lottoBalls.stream().map(LottoBall::getNumber).map(String::valueOf).reduce((a, b) -> a + ", " + b).get();
