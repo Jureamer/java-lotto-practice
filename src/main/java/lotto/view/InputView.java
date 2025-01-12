@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.domain.LottoBall;
-import lotto.domain.PurchasingAmount;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -27,5 +27,21 @@ public class InputView {
         System.out.println("보너스 볼을 입력해 주세요.");
         String bonusNumber = scanner.nextLine();
         return new WinningLotto(winningLotto, bonusNumber);
+    }
+
+    public List<Lotto> getManualLottos(PurchasingAmount purchasingAmount) {
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        int manualCount = Integer.parseInt(scanner.nextLine());
+
+        if (manualCount > purchasingAmount.getAmount() / PurchasingAmount.MIN_AMOUNT) {
+            throw new IllegalArgumentException("수동으로 구매할 수 있는 로또의 개수를 초과하였습니다.");
+        }
+        ArrayList<Lotto> lottos = new ArrayList<>();
+
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        for (int i = 0; i < manualCount; i++) {
+            lottos.add(new Lotto(scanner.nextLine()));
+        }
+        return lottos;
     }
 }
